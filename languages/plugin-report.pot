@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plugin Report\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-21 20:51+0000\n"
+"POT-Creation-Date: 2022-01-03 20:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,74 +16,74 @@ msgstr ""
 "X-Loco-Version: 2.4.2; wp-5.5"
 
 #. %1$s: Plugin version number, %2$s: PHP version number.
-#: rt-plugin-report.php:461
+#: rt-plugin-report.php:463
 #, php-format
 msgid "(%1$s available, requires PHP %2$s)"
 msgstr ""
 
 #. %1$s: Plugin version number, %2$s: WP version number, %3$s: PHP version number
-#: rt-plugin-report.php:455
+#: rt-plugin-report.php:457
 #, php-format
 msgid "(%1$s available, requires WP %2$s and PHP %3$s)"
 msgstr ""
 
 #. %1$s: Plugin version number, %2$s: WP version number.
-#: rt-plugin-report.php:458
+#: rt-plugin-report.php:460
 #, php-format
 msgid "(%1$s available, requires WP %2$s)"
 msgstr ""
 
 #. %s: Plugin version number.
-#: rt-plugin-report.php:464
+#: rt-plugin-report.php:466
 #, php-format
 msgid "(%s available)"
 msgstr ""
 
-#: rt-plugin-report.php:137
+#: rt-plugin-report.php:139
 msgid "Activated"
 msgstr ""
 
-#. %s = Available new version number
-#: rt-plugin-report.php:114
+#: rt-plugin-report.php:116
 #, php-format
 msgid "An upgrade to %s is available"
 msgstr ""
 
-#: rt-plugin-report.php:186
+#: rt-plugin-report.php:188
 msgid "Author URL"
 msgstr ""
 
-#: rt-plugin-report.php:139
+#: rt-plugin-report.php:141
 msgid "Auto-Updates"
 msgstr ""
 
-#: rt-plugin-report.php:124
+#: rt-plugin-report.php:126
 msgid "Clear cached plugin data and reload"
 msgstr ""
 
-#: rt-plugin-report.php:126
+#: rt-plugin-report.php:128
 msgid "Currently installed plugins"
 msgstr ""
 
-#. %1$s: Current WordPress version number, %2$s: Current PHP version number
-#: rt-plugin-report.php:111
+#: rt-plugin-report.php:114
 #, php-format
-msgid "Currently running WordPress version %1$s and PHP version %2$s."
+msgid ""
+"Currently running WordPress version %1$s and PHP version %2$s and MySQL "
+"version %3$s."
 msgstr ""
 
-#: rt-plugin-report.php:135
+#: rt-plugin-report.php:137
 msgid "Description | Author"
 msgstr ""
 
-#: rt-plugin-report.php:381
+#: rt-plugin-report.php:383
 msgid "Edit"
 msgstr ""
 
-#: rt-plugin-report.php:476
+#: rt-plugin-report.php:478
 msgid "Enabled"
 msgstr ""
 
-#: rt-plugin-report.php:184
+#: rt-plugin-report.php:186
 msgid "Export .csv file"
 msgstr ""
 
@@ -95,56 +95,56 @@ msgstr ""
 msgid "https://roytanck.com"
 msgstr ""
 
-#: rt-plugin-report.php:138
+#: rt-plugin-report.php:140
 msgid "Installed ver"
 msgstr ""
 
-#: rt-plugin-report.php:140
+#: rt-plugin-report.php:142
 msgid "Last update"
 msgstr ""
 
-#: rt-plugin-report.php:156
+#: rt-plugin-report.php:158
 msgid "Loading..."
 msgstr ""
 
-#: rt-plugin-report.php:403
+#: rt-plugin-report.php:405
 msgid "local repository"
 msgstr ""
 
-#: rt-plugin-report.php:141
+#: rt-plugin-report.php:143
 msgid "MinVersions"
 msgstr ""
 
-#: rt-plugin-report.php:134
+#: rt-plugin-report.php:136
 msgid "Name"
 msgstr ""
 
-#: rt-plugin-report.php:428
+#: rt-plugin-report.php:430
 msgid "Network activated"
 msgstr ""
 
-#: rt-plugin-report.php:435
+#: rt-plugin-report.php:437
 msgid "No"
 msgstr ""
 
-#: rt-plugin-report.php:504 rt-plugin-report.php:523
+#: rt-plugin-report.php:506 rt-plugin-report.php:525
 msgid "No data available"
 msgstr ""
 
-#: rt-plugin-report.php:233 rt-plugin-report.php:369
+#: rt-plugin-report.php:235 rt-plugin-report.php:371
 msgid "No plugin data available."
 msgstr ""
 
-#: rt-plugin-report.php:478
+#: rt-plugin-report.php:480
 msgid "Not enabled"
 msgstr ""
 
-#: rt-plugin-report.php:74 rt-plugin-report.php:75 rt-plugin-report.php:107
+#: rt-plugin-report.php:74 rt-plugin-report.php:75 rt-plugin-report.php:108
 msgctxt "Page and menu title"
 msgid "Plugin Report"
 msgstr ""
 
-#: rt-plugin-report.php:422
+#: rt-plugin-report.php:424
 msgid "Please clear cache to update"
 msgstr ""
 
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Plugin Report"
 msgstr ""
 
-#: rt-plugin-report.php:185
+#: rt-plugin-report.php:187
 msgid "Plugin URL"
 msgstr ""
 
@@ -162,15 +162,15 @@ msgid ""
 "thru this fork"
 msgstr ""
 
-#: rt-plugin-report.php:142
+#: rt-plugin-report.php:144
 msgid "Rating"
 msgstr ""
 
-#: rt-plugin-report.php:136
+#: rt-plugin-report.php:138
 msgid "repository"
 msgstr ""
 
-#: rt-plugin-report.php:473
+#: rt-plugin-report.php:475
 msgid "Requires WordPress 5.5 or higher"
 msgstr ""
 
@@ -178,10 +178,15 @@ msgstr ""
 msgid "Roy Tanck und PBMod"
 msgstr ""
 
-#: rt-plugin-report.php:414
+#: rt-plugin-report.php:113
+#, php-format
+msgid "Theme %1$s is version %2$s from <a href=\"%3$s\">%4$s</a>"
+msgstr ""
+
+#: rt-plugin-report.php:416
 msgid "Updates disabled"
 msgstr ""
 
-#: rt-plugin-report.php:435
+#: rt-plugin-report.php:437
 msgid "Yes"
 msgstr ""

@@ -43,7 +43,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 		const CSS_CLASS_MED  = 'pr-risk-medium';
 		const CSS_CLASS_HIGH = 'pr-risk-high';
 		// Other class constants.
-		const PLUGIN_VERSION        = '9.2.0.0';
+		const PLUGIN_VERSION        = '9.2.0.0.7';
 		const COLS_PER_ROW          = 8;
 		const CACHE_LIFETIME        = DAY_IN_SECONDS;
 		const CACHE_LIFETIME_NOREPO = WEEK_IN_SECONDS;
@@ -102,15 +102,17 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 				}
 			}
 
+			global $wpdb;
 			// Start the page's output.
 			echo '<div class="wrap">';
 			echo '<h1>' . esc_html_x( 'Plugin Report', 'Page and menu title', 'plugin-report' ) . '</h1>';
 			echo '<p>';
 			$version_temp = '<span class="' . $this->get_version_risk_classname( $wp_version, $wp_latest ) . '">' . $wp_version . '</span>';
-			/* translators: %1$s: Current WordPress version number, %2$s: Current PHP version number */
-			echo sprintf( __( 'Currently running WordPress version %1$s and PHP version %2$s.', 'plugin-report' ), $version_temp, phpversion() );
+			$my_theme = wp_get_theme();
+			$mysqlVersion = empty( $wpdb->use_mysqli ) ? mysql_get_server_info() : mysqli_get_server_info( $wpdb->dbh );
+			echo sprintf( __('Theme %1$s is version %2$s from <a href="%3$s">%4$s</a>','plugin-report'), $my_theme->get( 'Name' ), $my_theme->get( 'Version' ),$my_theme->get( 'ThemeURI' ),$my_theme->get( 'Author' ) );
+			echo '. '. sprintf( __( 'Currently running WordPress version %1$s and PHP version %2$s and MySQL version %3$s.', 'plugin-report' ), $version_temp, phpversion(),$mysqlVersion );
 			if ( version_compare( $wp_version, $wp_latest, '<' ) ) {
-				/* translators: %s = Available new version number */
 				echo sprintf( ' (' . esc_html__( 'An upgrade to %s is available', 'plugin-report' ) . ')', $wp_latest );
 			}
 			echo '</p>';

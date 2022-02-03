@@ -9,8 +9,8 @@ Author:            Roy Tanck und PBMod
 Author URI:        https://roytanck.com
 License:           GPLv3
 Network:           true
-Version: 9.2.0.0.7
-Stable tag: 9.2.0.0.7
+Version: 9.2.0.1.7
+Stable tag: 9.2.0.1.7
 Requires at least: 5.1
 Tested up to: 5.9.0
 Requires PHP: 8.0
@@ -43,7 +43,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 		const CSS_CLASS_MED  = 'pr-risk-medium';
 		const CSS_CLASS_HIGH = 'pr-risk-high';
 		// Other class constants.
-		const PLUGIN_VERSION        = '9.2.0.0.7';
+		const PLUGIN_VERSION        = '9.2.0.1.7';
 		const COLS_PER_ROW          = 8;
 		const CACHE_LIFETIME        = DAY_IN_SECONDS;
 		const CACHE_LIFETIME_NOREPO = WEEK_IN_SECONDS;
@@ -270,12 +270,12 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
                             if ( $textdomain ) {
                                 if ( ! is_textdomain_loaded( $textdomain ) ) {
                                     if ( $plugin['DomainPath'] ) {
-                                        load_plugin_textdomain( $textdomain, false, dirname( $plugin_file ) . $plugin['DomainPath'] );
+                                        load_plugin_textdomain( $textdomain, false, dirname( $key ) . $plugin['DomainPath'] );
                                     } else {
-                                        load_plugin_textdomain( $textdomain, false, dirname( $plugin_file ) );
+                                        load_plugin_textdomain( $textdomain, false, dirname( $key ) );
                                     }
                                 }
-                            } elseif ( 'hello.php' === basename( $plugin_file ) ) {
+                            } elseif ( 'hello.php' === basename( $key ) ) {
                                 $textdomain = 'default';
                             }
                             if ( $textdomain ) {

@@ -9,10 +9,10 @@ Author:            Roy Tanck und PBMod
 Author URI:        https://roytanck.com
 License:           GPLv3
 Network:           true
-Version: 9.2.0.1.7
-Stable tag: 9.2.0.1.7
+Version: 9.2.0.2.7
+Stable tag: 9.2.0.2.7
 Requires at least: 5.1
-Tested up to: 5.9.0
+Tested up to: 5.9
 Requires PHP: 8.0
 */
 
@@ -174,9 +174,9 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			}
 			// Register the plugin's admin js, and require jquery.
 			wp_enqueue_script( 'plugin-report-js', plugins_url( '/js/plugin-report.js', __FILE__ ), array( 'jquery', 'plugin-report-tablesort-js' ), self::PLUGIN_VERSION );
-			wp_enqueue_script( 'plugin-report-tablesort-js', plugins_url( '/js/tablesort.min.js', __FILE__ ), array( 'jquery' ), '5.1.0' );
-			wp_enqueue_script( 'plugin-report-tablesort-number-js', plugins_url( '/js/tablesort.number.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.1.0' );
-			wp_enqueue_script( 'plugin-report-tablesort-dotsep-js', plugins_url( '/js/tablesort.dotsep.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.1.0' );
+			wp_enqueue_script( 'plugin-report-tablesort-js', plugins_url( '/js/tablesort.min.js', __FILE__ ), array( 'jquery' ), '5.3' );
+			wp_enqueue_script( 'plugin-report-tablesort-number-js', plugins_url( '/js/tablesort.number.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.3' );
+			wp_enqueue_script( 'plugin-report-tablesort-dotsep-js', plugins_url( '/js/tablesort.dotsep.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.3' );
 			// Add some variables to the page, to be used by the javascript.
 			$slugs     = $this->get_plugin_slugs();
 			$slugs_str = implode( ',', $slugs );
@@ -336,17 +336,18 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 					if ( empty( $repo_host ) || strtolower( $repo_host ) === 'w.org' || strtolower( $repo_host ) === 'wordpress.org' ) {
 						$returned_object = plugins_api( 'plugin_information', $args );
                     }
-					// Add the repo info to the report.
-					if ( ! is_wp_error( $returned_object ) ) {
-						$report['repo_info'] = maybe_unserialize( $returned_object );
-						// Cache the report.
-						set_site_transient( $cache_key, $report, self::CACHE_LIFETIME );
-					} else {
-						// Store the error code and message in the report.
-						$report['repo_error_code'] = $returned_object->get_error_code();
-						$report['repo_error_message'] = $returned_object->get_error_message();
-						// Cache for an extra long time when the plugin is not in the repo.
-						set_site_transient( $cache_key, $report, self::CACHE_LIFETIME_NOREPO );
+					if ( isset( $returned_object ) ) {
+						if ( ! is_wp_error( $returned_object ) ) {
+							$report['repo_info'] = maybe_unserialize( $returned_object );
+							// Cache the report.
+							set_site_transient( $cache_key, $report, self::CACHE_LIFETIME );
+						} else {
+							// Store the error code and message in the report.
+							$report['repo_error_code']    = $returned_object->get_error_code();
+							$report['repo_error_message'] = $returned_object->get_error_message();
+							// Cache for an extra long time when the plugin is not in the repo.
+							set_site_transient( $cache_key, $report, self::CACHE_LIFETIME_NOREPO );
+						}
 					}
 				} else {
 					$report = $cache;
@@ -481,7 +482,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 					}
 				}
 				// Last updates.
-				if ( isset( $report['repo_info'] ) ) {
+				 if ( isset( $report['repo_info'] ) && isset( $report['repo_info']->last_updated ) ) {
 					$time_update = new DateTime( $report['repo_info']->last_updated );
 					$time_diff   = human_time_diff( $time_update->getTimestamp(), current_time( 'timestamp' ) );
 					$css_class   = $this->get_timediff_risk_classname( current_time( 'timestamp' ) - $time_update->getTimestamp() );
@@ -494,14 +495,14 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 				}
 				// Tested up to.
 				$html .= '<td class="' . $css_class . '">';
-				if ( isset( $report['repo_info'] ) ) {
+				if ( isset( $report['repo_info'] ) && isset( $report['repo_info']->tested ) ) {
 					$css_class = $this->get_version_risk_classname( $report['repo_info']->tested, $wp_latest );
 					$html .= $report['repo_info']->tested . ' Online <br>'. $report['versions'] . '</td>';
 				} else {
 					$html .= '<br>'. $report['versions'] . '</td>';
 				}
 				// Overall user rating.
-				if ( isset( $report['repo_info'] ) ) {
+				 if ( isset( $report['repo_info'] ) && isset( $report['repo_info']->num_ratings ) && isset( $report['repo_info']->rating ) ) {
 					$css_class  = ( intval( $report['repo_info']->num_ratings ) > 0 ) ? $this->get_percentage_risk_classname( intval( $report['repo_info']->rating ) ) : '';
 					$value_text = ( ( intval( $report['repo_info']->num_ratings ) > 0 ) ? intval($report['repo_info']->rating) . '%' : esc_html__( 'No data available', 'plugin-report' ) );
 					$html      .= '<td class="' . $css_class . '">' . $value_text . '</td>';

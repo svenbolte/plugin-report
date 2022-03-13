@@ -12,7 +12,7 @@ Network:           true
 Version: 9.2.0.2.8
 Stable tag: 9.2.0.2.8
 Requires at least: 5.1
-Tested up to: 5.9.1
+Tested up to: 5.9.2
 Requires PHP: 8.0
 */
 
@@ -352,7 +352,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 				} else {
 					$report = $cache;
 				}
-
+			
 				return $report;
 
 			} else {
@@ -552,10 +552,10 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 		// Assess the risk associated with low ratings or poor compatibility feedback, return corresponding CSS class
 		private function get_timediff_risk_classname( $time_diff ) {
 			$days = $time_diff / ( DAY_IN_SECONDS );
-			if ( $days > 365 ) {
+			if ( $days > 700 ) {
 				return self::CSS_CLASS_HIGH;
 			}
-			if ( $days > 90 ) {
+			if ( $days > 365 ) {
 				return self::CSS_CLASS_MED;
 			}
 			return self::CSS_CLASS_LOW;

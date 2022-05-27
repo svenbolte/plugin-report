@@ -2,8 +2,8 @@
 Contributors: roytanck, zodiac1978, pedromendonca, PBMod
 Tags: admin, plugins, multisite, report
 License: GPLv3
-Version: 9.2.0.2.7
-Stable tag: 9.2.0.2.7
+Version: 9.2.0.2.9
+Stable tag: 9.2.0.2.9
 Requires at least: 5.1
 Tested up to: 6.0
 Requires PHP: 8.0
@@ -24,6 +24,10 @@ A WordPress plugin that provides detailed information about currently installed 
 Special thanks go to [Tristen Forsythe Brown](http://tristen.ca/) for the [tablesort JavaScript library](https://github.com/tristen/tablesort) licensed under the MIT License.
 
 == Changelog ==
+
+= 9.2.0.2.8 (2022-05-25) =
+more information about used theme and compatibility
+csv export line break fixing
 
 = 9.2.0.2.7 (2022-02-18) =
 Tablesort updates

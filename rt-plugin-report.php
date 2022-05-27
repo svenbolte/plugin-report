@@ -9,8 +9,8 @@ Author:            Roy Tanck und PBMod
 Author URI:        https://roytanck.com
 License:           GPLv3
 Network:           true
-Version: 9.2.0.2.8
-Stable tag: 9.2.0.2.8
+Version: 9.2.0.2.9
+Stable tag: 9.2.0.2.9
 Requires at least: 5.1
 Tested up to: 6.0
 Requires PHP: 8.0
@@ -109,9 +109,20 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			echo '<p>';
 			$version_temp = '<span class="' . $this->get_version_risk_classname( $wp_version, $wp_latest ) . '">' . $wp_version . '</span>';
 			$my_theme = wp_get_theme();
+			// print_r($my_theme);
 			$mysqlVersion = empty( $wpdb->use_mysqli ) ? mysql_get_server_info() : mysqli_get_server_info( $wpdb->dbh );
-			echo sprintf( __('Theme %1$s is version %2$s from <a href="%3$s">%4$s</a>','plugin-report'), $my_theme->get( 'Name' ), $my_theme->get( 'Version' ),$my_theme->get( 'ThemeURI' ),$my_theme->get( 'Author' ) );
-			echo '. '. sprintf( __( 'Currently running WordPress version %1$s and PHP version %2$s and MySQL version %3$s.', 'plugin-report' ), $version_temp, phpversion(),$mysqlVersion );
+			echo '<table class="wp-list-table widefat striped"><tr>';
+			echo '<td>Wordpress: '.$version_temp.'</td>';
+			echo '<td>PHP: '.phpversion().'</td>';
+			echo '<td>MySQL: '.$mysqlVersion.'</td>';
+			echo '<td>Design: <a href="'.$my_theme->get( 'ThemeURI' ).'">'.$my_theme->get( 'Name' ).'</a></td>';
+			echo '<td>Version: <b>'.$my_theme->get( 'Version' ).'</b>';
+			echo '<br><a title="'.__('Edit','plugin-report').'" href="'.admin_url( 'theme-editor.php' ).'">'.__('Edit','plugin-report').'</a></td>';
+			echo '<td>Autor: <a href="'.$my_theme->get( 'AuthorURI' ).'">'.$my_theme->get( 'Author' ).'</a></td>';
+			echo '<td>'.$my_theme->get( 'Description' ).'</td>';
+			echo '<td><b>WPMin: '.$my_theme->get( 'RequiresWP' ).'</td>';
+			echo '<td><b>PhPMin: '.$my_theme->get( 'RequiresPHP' ).'</td>';
+			echo '</tr></table>';
 			if ( version_compare( $wp_version, $wp_latest, '<' ) ) {
 				echo sprintf( ' (' . esc_html__( 'An upgrade to %s is available', 'plugin-report' ) . ')', $wp_latest );
 			}
@@ -438,7 +449,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 						$active    = is_plugin_active( $report['file_path'] ) ? __( 'Yes', 'plugin-report' ) : __( 'No', 'plugin-report' );
 						$css_class = is_plugin_active( $report['file_path'] ) ? self::CSS_CLASS_LOW : self::CSS_CLASS_HIGH;
 					}
-					$time_diff   = human_time_diff( strtotime($report['local_info']['ModDatum']), current_time( 'timestamp' ) );
+					$time_diff   = __('ago ','plugin-report'). human_time_diff( strtotime($report['local_info']['ModDatum']), current_time( 'timestamp' ) );
 					$html .= '<td class="' . $css_class . '">' . $active . ' <br>' .$report['local_info']['ModDatum'] . ' <br>' . $time_diff . '</td>';
 				}
 				
@@ -484,11 +495,11 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 				// Last updates.
 				 if ( isset( $report['repo_info'] ) && isset( $report['repo_info']->last_updated ) ) {
 					$time_update = new DateTime( $report['repo_info']->last_updated );
-					$time_diff   = human_time_diff( $time_update->getTimestamp(), current_time( 'timestamp' ) );
+					$time_diff   = __('ago ','plugin-report').human_time_diff( $time_update->getTimestamp(), current_time( 'timestamp' ) );
 					$css_class   = $this->get_timediff_risk_classname( current_time( 'timestamp' ) - $time_update->getTimestamp() );
 					$html       .= '<td class="' . $css_class . '" data-sort="' . $time_update->getTimestamp() . '">' . $time_diff. '</td>';
 				} else {
-					$time_diff   = human_time_diff( strtotime($report['local_info']['ModDatum']), current_time( 'timestamp' ) );
+					$time_diff   = __('ago ','plugin-report').human_time_diff( strtotime($report['local_info']['ModDatum']), current_time( 'timestamp' ) );
 					$css_class   = $this->get_timediff_risk_classname( current_time( 'timestamp' ) - strtotime($report['local_info']['ModDatum']) );
 					$html       .= '<td class="' . $css_class . '">' . $time_diff . '</td>';
 					// $html .= $this->render_error_cell();

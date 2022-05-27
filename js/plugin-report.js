@@ -74,11 +74,11 @@ jQuery(document).ready( function( $ ){
 				csv_data += $(this).text().replace(/,/g, ".") + ',';
 				// If this is the first column, add the plugin url column
 				if( counter == 0 ){
-					csv_data += plugin_report_vars.plugin_url_header + ',';
+					csv_data += plugin_report_vars.plugin_url_header + ';';
 				}
 				// If this is the second column, add the author url column
 				if( counter == 1 ){
-					csv_data += plugin_report_vars.author_url_header + ',';
+					csv_data += plugin_report_vars.author_url_header + ';';
 				}
 				counter++;
 			});
@@ -92,7 +92,7 @@ jQuery(document).ready( function( $ ){
 			// Loop through all regular cells.
 			$(this).find('td').each(function(){
 				// Remove any comma's from the cell contents, then add to output.
-				csv_data += $(this).text().replace(/,/g, ".") + ',';
+				csv_data += $(this).text().replace(/,/g, ".") + ';';
 				// If this is one of the first two columns, add a url column.
 				if( counter <2 ){
 					var href = '';
@@ -101,7 +101,7 @@ jQuery(document).ready( function( $ ){
 						href = $(this).attr('href').split('#')[0].split('?')[0];
 					});
 					// Add to the output.
-					csv_data += href + ',';
+					csv_data += href + ';';
 				}
 				counter++;
 			});

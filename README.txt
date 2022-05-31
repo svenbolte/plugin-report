@@ -2,8 +2,8 @@
 Contributors: roytanck, zodiac1978, pedromendonca, PBMod
 Tags: admin, plugins, multisite, report
 License: GPLv3
-Version: 9.2.0.2.10
-Stable tag: 9.2.0.2.10
+Version: 9.2.1.10
+Stable tag: 9.2.1.10
 Requires at least: 5.1
 Tested up to: 6.0
 Requires PHP: 8.0
@@ -24,6 +24,10 @@ A WordPress plugin that provides detailed information about currently installed 
 Special thanks go to [Tristen Forsythe Brown](http://tristen.ca/) for the [tablesort JavaScript library](https://github.com/tristen/tablesort) licensed under the MIT License.
 
 == Changelog ==
+
+= 9.2.1-10 (2022-05-25) =
+from master: Added detection for plugins that have been closed in the wordpress.org repository
+changed listing, if not on wordpress but on github repository or forked, forked and closed dont get critical color unless still updated
 
 = 9.2.0.2.8-10 (2022-05-25) =
 more information about used theme and compatibility

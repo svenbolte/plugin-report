@@ -12,7 +12,7 @@ Network:           true
 Version: 9.2.1.10
 Stable tag: 9.2.1.10
 Requires at least: 5.1
-Tested up to: 6.0
+Tested up to: 6.0.1
 Requires PHP: 8.0
 */
 

@@ -9,8 +9,8 @@ Author:            Roy Tanck und PBMod
 Author URI:        https://roytanck.com
 License:           GPLv3
 Network:           true
-Version: 9.2.1.10
-Stable tag: 9.2.1.10
+Version: 9.2.1.1.20
+Stable tag: 9.2.1.1.20
 Requires at least: 5.1
 Tested up to: 6.1.1
 Requires PHP: 8.0
@@ -115,11 +115,15 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			echo '<td>Wordpress: '.$version_temp.'</td>';
 			echo '<td>PHP: '.phpversion().'</td>';
 			echo '<td>MySQL: '.$mysqlVersion.'</td>';
-			echo '<td>Design: <a href="'.$my_theme->get( 'ThemeURI' ).'">'.$my_theme->get( 'Name' ).'</a></td>';
+			echo '<td>Design: <a href="'.$my_theme->get( 'ThemeURI' ).'">'.$my_theme->get( 'Name' ). '</a></td>';
 			echo '<td>Version: <b>'.$my_theme->get( 'Version' ).'</b>';
 			echo '<br><a title="'.__('Edit','plugin-report').'" href="'.admin_url( 'theme-editor.php' ).'">'.__('Edit','plugin-report').'</a></td>';
 			echo '<td>Autor: <a href="'.$my_theme->get( 'AuthorURI' ).'">'.$my_theme->get( 'Author' ).'</a></td>';
-			echo '<td>'.$my_theme->get( 'Description' ).'</td>';
+			echo '<td><span class="pr-risk-low">';
+			$template_style_path = get_stylesheet_directory().'/style.css';
+			if ( file_exists( $template_style_path ) ) { $template_mod = date("d.m.Y H:i:s", filemtime($template_style_path)); } else { $template_mod = ''; }
+			echo $template_mod.' '.ago(filemtime($template_style_path)).'</span> &nbsp; '.__($my_theme->get( 'Description' ),$my_theme->get( 'TextDomain' )); 
+			echo '</td>';
 			echo '<td><b>WPMin: '.$my_theme->get( 'RequiresWP' ).'</td>';
 			echo '<td><b>PhPMin: '.$my_theme->get( 'RequiresPHP' ).'</td>';
 			echo '</tr></table>';
@@ -441,7 +445,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 						if ( isset( $report['repo_error_code'] ) && $report['repo_error_code'] === 'plugins_api_failed' ) {
 							// Plugin is not available in the wp.org repo.
 							if( isset( $report['exists_in_svn'] ) && $report['exists_in_svn'] === true ) {
-								$html .= '<td class="' . self::CSS_CLASS_MED . '">' . __( 'wordpress.org<br>closed', 'plugin-report' ) . '</td>';
+								$html .= '<td class="' . self::CSS_CLASS_MED . '">' . __( 'github.com<br>self-hosted<br>wordpress.org<br>closed', 'plugin-report' ) . '</td>';
 							} else {
 								$html .= '<td class="' . self::CSS_CLASS_MED . '">' . __( 'github.com<br>self-hosted', 'plugin-report' ) . '</td>';
 							}

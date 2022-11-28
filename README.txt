@@ -2,8 +2,8 @@
 Contributors: roytanck, zodiac1978, pedromendonca, PBMod
 Tags: admin, plugins, multisite, report
 License: GPLv3
-Version: 9.2.1.10
-Stable tag: 9.2.1.10
+Version: 9.2.1.1.20
+Stable tag: 9.2.1.1.20
 Requires at least: 5.1
 Tested up to: 6.1.1
 Requires PHP: 8.0

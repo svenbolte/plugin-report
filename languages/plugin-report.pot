@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plugin Report\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-27 09:04+0000\n"
+"POT-Creation-Date: 2022-11-28 12:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,72 +16,80 @@ msgstr ""
 "X-Loco-Version: 2.4.2; wp-5.5"
 
 #. %1$s: Plugin version number, %2$s: PHP version number.
-#: rt-plugin-report.php:475
+#: rt-plugin-report.php:509
 #, php-format
 msgid "(%1$s available, requires PHP %2$s)"
 msgstr ""
 
 #. %1$s: Plugin version number, %2$s: WP version number, %3$s: PHP version number
-#: rt-plugin-report.php:469
+#: rt-plugin-report.php:503
 #, php-format
 msgid "(%1$s available, requires WP %2$s and PHP %3$s)"
 msgstr ""
 
 #. %1$s: Plugin version number, %2$s: WP version number.
-#: rt-plugin-report.php:472
+#: rt-plugin-report.php:506
 #, php-format
 msgid "(%1$s available, requires WP %2$s)"
 msgstr ""
 
 #. %s: Plugin version number.
-#: rt-plugin-report.php:478
+#: rt-plugin-report.php:512
 #, php-format
 msgid "(%s available)"
 msgstr ""
 
-#: rt-plugin-report.php:150
+#: rt-plugin-report.php:154
 msgid "Activated"
 msgstr ""
 
-#: rt-plugin-report.php:452
+#: rt-plugin-report.php:486 rt-plugin-report.php:532 rt-plugin-report.php:536
 msgid "ago "
 msgstr ""
 
-#: rt-plugin-report.php:127
+#: rt-plugin-report.php:131
 #, php-format
 msgid "An upgrade to %s is available"
 msgstr ""
 
-#: rt-plugin-report.php:199
+#: rt-plugin-report.php:203
 msgid "Author URL"
 msgstr ""
 
-#: rt-plugin-report.php:152
+#: rt-plugin-report.php:156
 msgid "Auto-Updates"
 msgstr ""
 
-#: rt-plugin-report.php:137
+#: rt-plugin-report.php:141
 msgid "Clear cached plugin data and reload"
 msgstr ""
 
-#: rt-plugin-report.php:139
+#: rt-plugin-report.php:143
 msgid "Currently installed plugins"
 msgstr ""
 
-#: rt-plugin-report.php:148
+#: rt-plugin-report.php:152
 msgid "Description | Author"
 msgstr ""
 
-#: rt-plugin-report.php:120 rt-plugin-report.php:395
+#: rt-plugin-report.php:120 rt-plugin-report.php:425
 msgid "Edit"
 msgstr ""
 
-#: rt-plugin-report.php:490
+#: rt-plugin-report.php:524
 msgid "Enabled"
 msgstr ""
 
-#: rt-plugin-report.php:197
+#: rt-plugin-report.php:201
 msgid "Export .csv file"
+msgstr ""
+
+#: rt-plugin-report.php:450
+msgid "github.com<br>self-hosted"
+msgstr ""
+
+#: rt-plugin-report.php:448
+msgid "github.com<br>self-hosted<br>wordpress.org<br>closed"
 msgstr ""
 
 #. URI of the plugin
@@ -92,47 +100,43 @@ msgstr ""
 msgid "https://roytanck.com"
 msgstr ""
 
-#: rt-plugin-report.php:151
+#: rt-plugin-report.php:155
 msgid "Installed ver"
 msgstr ""
 
-#: rt-plugin-report.php:153
+#: rt-plugin-report.php:157
 msgid "Last update"
 msgstr ""
 
-#: rt-plugin-report.php:169
+#: rt-plugin-report.php:173
 msgid "Loading..."
 msgstr ""
 
-#: rt-plugin-report.php:417
-msgid "local repository"
-msgstr ""
-
-#: rt-plugin-report.php:154
+#: rt-plugin-report.php:158
 msgid "MinVersions"
 msgstr ""
 
-#: rt-plugin-report.php:147
+#: rt-plugin-report.php:151
 msgid "Name"
 msgstr ""
 
-#: rt-plugin-report.php:442
+#: rt-plugin-report.php:476
 msgid "Network activated"
 msgstr ""
 
-#: rt-plugin-report.php:449
+#: rt-plugin-report.php:483
 msgid "No"
 msgstr ""
 
-#: rt-plugin-report.php:518 rt-plugin-report.php:537
+#: rt-plugin-report.php:552 rt-plugin-report.php:571
 msgid "No data available"
 msgstr ""
 
-#: rt-plugin-report.php:246 rt-plugin-report.php:383
+#: rt-plugin-report.php:250 rt-plugin-report.php:413
 msgid "No plugin data available."
 msgstr ""
 
-#: rt-plugin-report.php:492
+#: rt-plugin-report.php:526
 msgid "Not enabled"
 msgstr ""
 
@@ -141,7 +145,7 @@ msgctxt "Page and menu title"
 msgid "Plugin Report"
 msgstr ""
 
-#: rt-plugin-report.php:436
+#: rt-plugin-report.php:470
 msgid "Please clear cache to update"
 msgstr ""
 
@@ -149,7 +153,7 @@ msgstr ""
 msgid "Plugin Report"
 msgstr ""
 
-#: rt-plugin-report.php:198
+#: rt-plugin-report.php:202
 msgid "Plugin URL"
 msgstr ""
 
@@ -159,15 +163,15 @@ msgid ""
 "thru this fork"
 msgstr ""
 
-#: rt-plugin-report.php:155
+#: rt-plugin-report.php:159
 msgid "Rating"
 msgstr ""
 
-#: rt-plugin-report.php:149
+#: rt-plugin-report.php:153
 msgid "repository"
 msgstr ""
 
-#: rt-plugin-report.php:487
+#: rt-plugin-report.php:521
 msgid "Requires WordPress 5.5 or higher"
 msgstr ""
 
@@ -175,10 +179,10 @@ msgstr ""
 msgid "Roy Tanck und PBMod"
 msgstr ""
 
-#: rt-plugin-report.php:428
+#: rt-plugin-report.php:462
 msgid "Updates disabled"
 msgstr ""
 
-#: rt-plugin-report.php:449
+#: rt-plugin-report.php:483
 msgid "Yes"
 msgstr ""

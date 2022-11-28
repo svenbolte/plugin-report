@@ -1,76 +1,12 @@
-td.pr-risk-low {
-background-color: rgba( 0, 255, 0, 0.075 );
-color: #090 !important;
-font-weight: bold;
-}
-
-td.pr-risk-high {
-background-color: rgba( 255, 0, 0, 0.075 );
-color: #c00 !important;
-font-weight: bold;
-}
-
-td.pr-risk-medium {
-font-weight: bold;
-}
-
-/* additional info in table cells */
-
-span.pr-additional-info {
-font-weight: normal;
-color: #555;
-}
-
-/* progress bar */
-
-#plugin-report-progress progress {
-appearance: none;
-width: 100%;
-height: 1em;
-border: 1px solid #e5e5e5;
-background-color: #fff;
-color: #0073aa;
-}
-
-#plugin-report-progress progress::-webkit-progress-bar {
-background-color: #fff;
-}
-
-#plugin-report-progress progress::-webkit-progress-value {
-background-color: #0073aa;
-}
-
-#plugin-report-progress progress::-moz-progress-bar {
-background-color: #0073aa;
-}
-
-th[role=columnheader]:not(.no-sort) {
-cursor: pointer;
-}
-
-th[role=columnheader]:not(.no-sort):after {
-content: '';
-float: right;
-margin-top: 7px;
-border-width: 0 4px 4px;
-border-style: solid;
-border-color: #404040 transparent;
-visibility: hidden;
-opacity: 0;
-user-select: none;
-}
-
-th[aria-sort=ascending]:not(.no-sort):after {
-border-bottom: none;
-border-width: 4px 4px 0;
-}
-
-th[aria-sort]:not(.no-sort):after {
-visibility: visible;
-opacity: 0.4;
-}
-
-th[role=columnheader]:not(.no-sort):hover:after {
-visibility: visible;
-opacity: 1;
-}
+td.pr-risk-low,.pr-risk-low{background-color:rgba(0,255,0,0.075);color:#090!important;font-weight:700}
+td.pr-risk-high{background-color:rgba(255,0,0,0.075);color:#c00!important;font-weight:700}
+td.pr-risk-medium{font-weight:700}
+span.pr-additional-info{font-weight:400;color:#555}
+#plugin-report-progress progress{appearance:none;width:100%;height:1em;border:1px solid #e5e5e5;background-color:#fff;color:#0073aa}
+#plugin-report-progress progress::-webkit-progress-bar{background-color:#fff}
+th[role=columnheader]:not(.no-sort){cursor:pointer}
+th[role=columnheader]:not(.no-sort):after{content:'';float:right;margin-top:7px;border-width:0 4px 4px;border-style:solid;border-color:#404040 transparent;visibility:hidden;opacity:0;user-select:none}
+th[aria-sort=ascending]:not(.no-sort):after{border-bottom:none;border-width:4px 4px 0}
+th[aria-sort]:not(.no-sort):after{visibility:visible;opacity:.4}
+th[role=columnheader]:not(.no-sort):hover:after{visibility:visible;opacity:1}
+#plugin-report-progress progress::-webkit-progress-value,#plugin-report-progress progress::-moz-progress-bar{background-color:#0073aa}

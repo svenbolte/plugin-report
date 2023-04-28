@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Plugin Report\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 12:31+0000\n"
+"POT-Creation-Date: 2023-04-28 18:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Description | Author"
 msgstr ""
 
-#: rt-plugin-report.php:120 rt-plugin-report.php:425
+#: rt-plugin-report.php:119 rt-plugin-report.php:425
 msgid "Edit"
 msgstr ""
 
@@ -177,6 +177,10 @@ msgstr ""
 
 #. Author of the plugin
 msgid "Roy Tanck und PBMod"
+msgstr ""
+
+#: rt-plugin-report.php:125
+msgid "theme tags"
 msgstr ""
 
 #: rt-plugin-report.php:462

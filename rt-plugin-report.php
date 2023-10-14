@@ -11,8 +11,8 @@ License:           GPLv3
 Network:           true
 Version: 9.2.1.1.21
 Stable tag: 9.2.1.1.21
-Requires at least: 5.1
-Tested up to: 6.3
+Requires at least: 6.0
+Tested up to: 6.3.2
 Requires PHP: 8.0
 */
 

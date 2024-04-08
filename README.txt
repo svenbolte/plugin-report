@@ -5,7 +5,7 @@ License: GPLv3
 Version: 9.2.1.1.21
 Stable tag: 9.2.1.1.21
 Requires at least: 6.0
-Tested up to: 6.4.3
+Tested up to: 6.5
 Requires PHP: 8.0
 
 A WordPress plugin that provides detailed information about currently installed plugins.

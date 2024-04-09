@@ -9,11 +9,11 @@ Author:            Roy Tanck und PBMod
 Author URI:        https://roytanck.com
 License:           GPLv3
 Network:           true
-Version: 9.2.1.1.21
-Stable tag: 9.2.1.1.21
+Version: 9.2.1.1.22
+Stable tag: 9.2.1.1.22
 Requires at least: 6.0
 Tested up to: 6.5
-Requires PHP: 8.0
+Requires PHP: 8.2
 */
 
 // If called without WordPress, exit.
@@ -109,6 +109,17 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			echo '<p>';
 			$version_temp = '<span class="' . $this->get_version_risk_classname( $wp_version, $wp_latest ) . '">' . $wp_version . '</span>';
 			$my_theme = wp_get_theme();
+			// Daten aus dem Stylesheet holen	
+			$style_file = get_stylesheet_directory().'/style.css';
+			if ( file_exists( $style_file ) ) {
+				$theme_data = get_file_data( $style_file,
+					array(
+						'RequiresWP'  => 'Requires at least',
+						'RequiresPHP' => 'Requires PHP',
+						'TestedUpTo' => 'Tested up to',
+				   )
+				);
+			}
 			$mysqlVersion = empty( $wpdb->use_mysqli ) ? mysql_get_server_info() : mysqli_get_server_info( $wpdb->dbh );
 			echo '<table class="wp-list-table widefat striped"><tr>';
 			echo '<td>Wordpress: '.$version_temp.'</td>';
@@ -124,7 +135,8 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			echo $template_mod.' '.ago(filemtime($template_style_path)).'</span> &nbsp; '.__($my_theme->get( 'Description' ),$my_theme->get( 'TextDomain' )); 
 			echo ' &nbsp; <b>'.__('theme tags','plugin-report').':</b> '.__(implode(', ',$my_theme->get( 'Tags' )),$my_theme->get( 'TextDomain' )); 
 			echo '</td>';
-			echo '<td><b>WPMin: '.$my_theme->get( 'RequiresWP' ).'</td>';
+			echo '<td><b>WPMin: '.$my_theme->get( 'RequiresWP' );
+			echo '<br><b>Tested: '.$theme_data['TestedUpTo'].'</td>';
 			echo '<td><b>PhPMin: '.$my_theme->get( 'RequiresPHP' ).'</td>';
 			echo '</tr></table>';
 			if ( version_compare( $wp_version, $wp_latest, '<' ) ) {

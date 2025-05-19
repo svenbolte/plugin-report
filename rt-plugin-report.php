@@ -9,10 +9,10 @@ Author:            Roy Tanck und PBMod
 Author URI:        https://roytanck.com
 License:           GPLv3
 Network:           true
-Version: 9.2.1.1.22
-Stable tag: 9.2.1.1.22
+Version: 9.2.2.1.23
+Stable tag: 9.2.2.1.23
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 6.8.1
 Requires PHP: 8.2
 */
 

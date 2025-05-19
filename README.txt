@@ -2,11 +2,12 @@
 Contributors: roytanck, zodiac1978, pedromendonca, PBMod
 Tags: admin, plugins, multisite, report
 License: GPLv3
-Version: 9.2.1.1.22
-Stable tag: 9.2.1.1.22
+Version: 9.2.2.1.23
+Stable tag: 9.2.2.1.23
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 6.8.1
 Requires PHP: 8.2
+
 
 A WordPress plugin that provides detailed information about currently installed plugins.
 
@@ -24,6 +25,11 @@ A WordPress plugin that provides detailed information about currently installed 
 Special thanks go to [Tristen Forsythe Brown](http://tristen.ca/) for the [tablesort JavaScript library](https://github.com/tristen/tablesort) licensed under the MIT License.
 
 == Changelog ==
+
+= 9.2.2.1.23 (2025-05-09) =
+tablesort taken from master branch.
+Testing with WP 6.8.2
+little changes relevant for this fork
 
 = 9.2.1-10 (2022-05-25) =
 from master: Added detection for plugins that have been closed in the wordpress.org repository

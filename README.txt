@@ -1,11 +1,11 @@
 === Plugin Report ===
-Contributors: roytanck, zodiac1978, pedromendonca, PBMod
+Contributors: roytanck, zodiac1978, pedromendonca, PBMod, Torsten Landsiedel
 Tags: admin, plugins, multisite, report
 License: GPLv3
-Version: 9.2.2.1.23
-Stable tag: 9.2.2.1.23
+Version: 9.2.2.2.23
+Stable tag: 9.2.2.2.23
 Requires at least: 6.0
-Tested up to: 6.8.1
+Tested up to: 6.9
 Requires PHP: 8.2
 
 
@@ -25,6 +25,11 @@ A WordPress plugin that provides detailed information about currently installed 
 Special thanks go to [Tristen Forsythe Brown](http://tristen.ca/) for the [tablesort JavaScript library](https://github.com/tristen/tablesort) licensed under the MIT License.
 
 == Changelog ==
+
+= 9.2.2.2 (2026-01-18) =
+Tested up to WordPress 6.9
+Tablesort updated to the latest version (5.7.0)
+Minor optimization loading the Javascript
 
 = 9.2.2.1.23 (2025-05-09) =
 tablesort taken from master branch.

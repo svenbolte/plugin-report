@@ -5,14 +5,14 @@ Plugin URI:        https://github.com/svenbolte/rt-plugin-report
 Description:       Provides detailed information about currently installed plugins, More info thru this fork
 Text Domain:       plugin-report
 Domain Path:       /languages/
-Author:            Roy Tanck und PBMod
+Author:            Roy Tanck Torsten Landsiedel und PBMod
 Author URI:        https://roytanck.com
 License:           GPLv3
 Network:           true
-Version: 9.2.2.1.23
-Stable tag: 9.2.2.1.23
+Version: 9.2.2.2.23
+Stable tag: 9.2.2.2.23
 Requires at least: 6.0
-Tested up to: 6.8.1
+Tested up to: 6.9
 Requires PHP: 8.2
 */
 
@@ -43,7 +43,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 		const CSS_CLASS_MED  = 'pr-risk-medium';
 		const CSS_CLASS_HIGH = 'pr-risk-high';
 		// Other class constants.
-		const PLUGIN_VERSION        = '9.2.1.10';
+		const PLUGIN_VERSION        = '9.2.2.2.23';
 		const COLS_PER_ROW          = 8;
 		const CACHE_LIFETIME        = DAY_IN_SECONDS;
 		const CACHE_LIFETIME_NOREPO = WEEK_IN_SECONDS;

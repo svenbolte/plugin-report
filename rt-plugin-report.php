@@ -12,7 +12,7 @@ Network:           true
 Version: 9.2.2.2.23
 Stable tag: 9.2.2.2.23
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 6.9.1
 Requires PHP: 8.2
 */
 
@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {	exit; }
 
 add_action( 'plugins_loaded', 'PluginReport_textdomain' );
 function PluginReport_textdomain() {
+    unload_textdomain('plugin-report');
 	load_plugin_textdomain( 'plugin-report', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 add_filter( 'load_textdomain_mofile', 'load_custom_plugin_translation_file', 10, 2 );

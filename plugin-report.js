@@ -26,8 +26,6 @@ jQuery(document).ready( function( $ ){
 		} else {
 			// Remove the progress bar.
 			$('#plugin-report-progress').html( '' );
-			// initialize sorting on table
-			new Tablesort(document.getElementById('plugin-report-table'));
 			// Create the export button.
 			$('#plugin-report-buttons').append('<button class="button" href="#" id="plugin-report-export-btn">' + plugin_report_vars.export_btn + '</button>');
 			// Export button event handler.

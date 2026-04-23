@@ -91,6 +91,9 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			// Assemble information we'll need.
 			global $wp_version;
 			$plugins = get_plugins();
+			uasort( $plugins, function( $a, $b ) {
+				return strcasecmp( $a['Name'], $b['Name'] );
+			} );
 
 			// Check wether a core update is available.
 			$wp_latest = $this->check_core_updates();
@@ -178,15 +181,15 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			echo '<table id="plugin-report-table" class="wp-list-table widefat striped">';
 			echo '<thead>';
 			echo '<tr>';
-			echo '<th data-sort-default>' . esc_html__( 'Name', 'plugin-report' ) . '</th>';
+			echo '<th>' . esc_html__( 'Name', 'plugin-report' ) . '</th>';
 			echo '<th>' . esc_html__( 'Description | Author', 'plugin-report' ) . '</th>';
 			echo '<th>' . esc_html__( 'repository', 'plugin-report' ) . '</th>';
 			echo '<th>' . esc_html__( 'Activated', 'plugin-report' ) . '</th>';
-			echo '<th data-sort-method="none" class="no-sort">' . esc_html__( 'Installed ver', 'plugin-report' ) . '</th>';
+			echo '<th>' . esc_html__( 'Installed ver', 'plugin-report' ) . '</th>';
 			echo '<th>' . esc_html__( 'Auto-Updates', 'plugin-report' ) . '</th>';
 			echo '<th>' . esc_html__( 'Last update', 'plugin-report' ) . '</th>';
-			echo '<th data-sort-method="dotsep">' . esc_html__( 'MinVersions', 'plugin-report' ) . '</th>';
-			echo '<th data-sort-method="number">' . esc_html__( 'Rating', 'plugin-report' ) . '</th>';
+			echo '<th>' . esc_html__( 'MinVersions', 'plugin-report' ) . '</th>';
+			echo '<th>' . esc_html__( 'Rating', 'plugin-report' ) . '</th>';
 			echo '</tr>';
 			echo '</thead>';
 			echo '<tbody>';
@@ -218,10 +221,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 				return;
 			}
 			// Register the plugin's admin js, and require jquery.
-			wp_enqueue_script( 'plugin-report-js', plugins_url( '/plugin-report.js', __FILE__ ), array( 'jquery', 'plugin-report-tablesort-js' ), self::PLUGIN_VERSION );
-			wp_enqueue_script( 'plugin-report-tablesort-js', plugins_url( '/tablesort.min.js', __FILE__ ), array( 'jquery' ), '5.3' );
-			wp_enqueue_script( 'plugin-report-tablesort-number-js', plugins_url( '/tablesort.number.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.3' );
-			wp_enqueue_script( 'plugin-report-tablesort-dotsep-js', plugins_url( '/tablesort.dotsep.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.3' );
+			wp_enqueue_script( 'plugin-report-js', plugins_url( '/plugin-report.js', __FILE__ ), array( 'jquery' ), self::PLUGIN_VERSION );
 			// Add some variables to the page, to be used by the javascript.
 			$slugs     = $this->get_plugin_slugs();
 			$slugs_str = implode( ',', $slugs );

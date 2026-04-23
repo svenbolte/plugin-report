@@ -9,8 +9,8 @@ Author:            Roy Tanck Torsten Landsiedel und PBMod
 Author URI:        https://roytanck.com
 License:           GPLv3
 Network:           true
-Version: 9.2.2.2.23
-Stable tag: 9.2.2.2.23
+Version: 9.2.2.2.25
+Stable tag: 9.2.2.2.25
 Requires at least: 6.0
 Tested up to: 6.9.1
 Requires PHP: 8.2
@@ -19,21 +19,26 @@ Requires PHP: 8.2
 // If called without WordPress, exit.
 if ( ! defined( 'ABSPATH' ) ) {	exit; }
 
-add_action( 'plugins_loaded', 'PluginReport_textdomain' );
-function PluginReport_textdomain() {
-    unload_textdomain('plugin-report');
-	load_plugin_textdomain( 'plugin-report', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-}
-add_filter( 'load_textdomain_mofile', 'load_custom_plugin_translation_file', 10, 2 );
+if ( is_admin() ) {
+   add_action( 'plugins_loaded', function() {
+        unload_textdomain( 'plugin-report' );
+        load_plugin_textdomain(
+            'plugin-report',
+            false,
+            dirname( plugin_basename( __FILE__ ) ) . '/languages'
+        );
+    });
 
-// // Lokale übersetzung erzwingen
-function load_custom_plugin_translation_file( $mofile, $domain ) {
-  if ( 'plugin-report' === $domain ) {
-    $mofile = dirname(  __FILE__ ) . '/languages/plugin-report-' . get_locale() . '.mo';
-  }
-  return $mofile;
+    add_filter( 'load_textdomain_mofile', function( $mofile, $domain ) {
+        if ( $domain === 'plugin-report' ) {
+            $custom = plugin_dir_path( __FILE__ ) . 'languages/plugin-report-' . get_locale() . '.mo';
+            if ( file_exists( $custom ) ) {
+                return $custom;
+            }
+        }
+        return $mofile;
+    }, 10, 2 );
 }
-
 
 if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 
@@ -44,14 +49,11 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 		const CSS_CLASS_MED  = 'pr-risk-medium';
 		const CSS_CLASS_HIGH = 'pr-risk-high';
 		// Other class constants.
-		const PLUGIN_VERSION        = '9.2.2.2.23';
-		const COLS_PER_ROW          = 8;
+		const PLUGIN_VERSION        = '9.2.2.2.25';
+		const COLS_PER_ROW          = 9;
 		const CACHE_LIFETIME        = DAY_IN_SECONDS;
 		const CACHE_LIFETIME_NOREPO = WEEK_IN_SECONDS;
 		// Constructor
-		public function __construct() {
-			// Intentionally left blank.
-		}
 
 		// Set up things like hooks and such
 		public function init() {
@@ -121,11 +123,22 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 				   )
 				);
 			}
-			$mysqlVersion = empty( $wpdb->use_mysqli ) ? mysql_get_server_info() : mysqli_get_server_info( $wpdb->dbh );
+			$mysqlVersion = '';
+			if ( isset( $wpdb->dbh ) && $wpdb->dbh ) {
+				if ( $wpdb->dbh instanceof mysqli ) {
+					$mysqlVersion = mysqli_get_server_info( $wpdb->dbh );
+				} elseif ( is_object( $wpdb->dbh ) && method_exists( $wpdb->dbh, 'getAttribute' ) ) {
+					try {
+						$mysqlVersion = (string) $wpdb->dbh->getAttribute( PDO::ATTR_SERVER_VERSION );
+					} catch ( Exception $e ) {
+						$mysqlVersion = '';
+					}
+				}
+			}
 			echo '<table class="wp-list-table widefat striped"><tr>';
 			echo '<td>Wordpress: '.$version_temp.'</td>';
 			echo '<td>PHP: '.phpversion().'</td>';
-			echo '<td>MySQL: '.$mysqlVersion.'</td>';
+			echo '<td>MySQL: ' . esc_html( $mysqlVersion ? $mysqlVersion : __( 'Unknown', 'plugin-report' ) ) . '</td>';
 			echo '<td>Design: <a href="'.$my_theme->get( 'ThemeURI' ).'">'.$my_theme->get( 'Name' ). '</a></td>';
 			echo '<td>Version: <b>'.$my_theme->get( 'Version' ).'</b>';
 			echo '<br><a title="'.__('Edit','plugin-report').'" href="'.admin_url( 'theme-editor.php' ).'">'.__('Edit','plugin-report').'</a></td>';
@@ -133,7 +146,11 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			echo '<td><span class="pr-risk-low">';
 			$template_style_path = get_stylesheet_directory().'/style.css';
 			if ( file_exists( $template_style_path ) ) { $template_mod = wp_date("l d. F Y H:i:s", filemtime($template_style_path)); } else { $template_mod = ''; }
-			echo $template_mod.' '.ago(filemtime($template_style_path)).'</span> &nbsp; '.__($my_theme->get( 'Description' ),$my_theme->get( 'TextDomain' )); 
+			$theme_modified_ago = '';
+			if ( file_exists( $template_style_path ) ) {
+				$theme_modified_ago = ' ' . esc_html( human_time_diff( filemtime( $template_style_path ), current_time( 'timestamp' ) ) ) . ' ' . esc_html__( 'ago', 'plugin-report' );
+			}
+			echo esc_html( $template_mod ) . $theme_modified_ago . '</span> &nbsp; ' . esc_html__( $my_theme->get( 'Description' ), $my_theme->get( 'TextDomain' ) ); 
 			echo ' &nbsp; <b>'.__('theme tags','plugin-report').':</b> '.__(implode(', ',$my_theme->get( 'Tags' )),$my_theme->get( 'TextDomain' )); 
 			echo '</td>';
 			echo '<td><b>WPMin: '.$my_theme->get( 'RequiresWP' );
@@ -201,10 +218,10 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 				return;
 			}
 			// Register the plugin's admin js, and require jquery.
-			wp_enqueue_script( 'plugin-report-js', plugins_url( '/js/plugin-report.js', __FILE__ ), array( 'jquery', 'plugin-report-tablesort-js' ), self::PLUGIN_VERSION );
-			wp_enqueue_script( 'plugin-report-tablesort-js', plugins_url( '/js/tablesort.min.js', __FILE__ ), array( 'jquery' ), '5.3' );
-			wp_enqueue_script( 'plugin-report-tablesort-number-js', plugins_url( '/js/tablesort.number.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.3' );
-			wp_enqueue_script( 'plugin-report-tablesort-dotsep-js', plugins_url( '/js/tablesort.dotsep.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.3' );
+			wp_enqueue_script( 'plugin-report-js', plugins_url( '/plugin-report.js', __FILE__ ), array( 'jquery', 'plugin-report-tablesort-js' ), self::PLUGIN_VERSION );
+			wp_enqueue_script( 'plugin-report-tablesort-js', plugins_url( '/tablesort.min.js', __FILE__ ), array( 'jquery' ), '5.3' );
+			wp_enqueue_script( 'plugin-report-tablesort-number-js', plugins_url( '/tablesort.number.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.3' );
+			wp_enqueue_script( 'plugin-report-tablesort-dotsep-js', plugins_url( '/tablesort.dotsep.min.js', __FILE__ ), array( 'plugin-report-tablesort-js' ), '5.3' );
 			// Add some variables to the page, to be used by the javascript.
 			$slugs     = $this->get_plugin_slugs();
 			$slugs_str = implode( ',', $slugs );
@@ -217,7 +234,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			);
 			wp_localize_script( 'plugin-report-js', 'plugin_report_vars', $vars );
 			// Enqueue admin CSS file.
-			wp_enqueue_style( 'plugin-report-css', plugin_dir_url( __FILE__ ) . 'css/plugin-report.css', array(), self::PLUGIN_VERSION );
+			wp_enqueue_style( 'plugin-report-css', plugin_dir_url( __FILE__ ) . 'plugin-report.css', array(), self::PLUGIN_VERSION );
 		}
 
 		// Get the slugs for all currently installed plugins
@@ -255,7 +272,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 			if ( ! function_exists( 'plugins_api' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 			}
-			$slug = sanitize_title( $_POST['slug'] );
+			$slug = sanitize_title( $_POST['slug'] ?? '' );
 			$report = $this->assemble_plugin_report( $slug );
 			if ( $report ) {
 				$table_row = $this->render_table_row( $report );
@@ -269,8 +286,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 				'message' => 'Success!',
 			);
 			// Return the response.
-			echo wp_json_encode( $response );
-			wp_die();
+			wp_send_json( $response );
 		}
 
 
@@ -291,7 +307,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 					// Get the locally available info, and add it to the report.
 					$directory = str_replace('/wp-content/themes', '/wp-content/plugins', get_theme_root()).'/';
 					foreach ( $plugins as $key => $plugin ) {
-						if ( $this->get_plugin_slug( $key ) == $slug ) {
+						if ( $this->get_plugin_slug( $key ) === $slug ) {
 
                             // Translate plugin data.
                             $textdomain = $plugin['TextDomain'];
@@ -314,7 +330,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
                             }							
 							
 							// Testedupto, PHPMin, MysqlMin abfragen
-							$plugin_data = $plugin_data = get_file_data( $directory . $key,
+							$plugin_data = get_file_data( $directory . $key,
 								array(
 									'RequiresWP'  => 'Requires at least',
 									'RequiresPHP' => 'Requires PHP',
@@ -700,10 +716,7 @@ if ( is_admin() && ! class_exists( 'RT_Plugin_Report' ) ) {
 
 		// Remove the cache item for a single plugin
 		private function clear_cache_item( $slug ) {
-			if ( isset( $slug ) ) {
-				$cache_key = $this->create_cache_key( $slug );
-				delete_site_transient( $cache_key );
-			}
+			delete_site_transient( $this->create_cache_key( $slug ) );
 		}
 
 		// Selectively delete cache for plugins that have been updated.

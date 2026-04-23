@@ -7,9 +7,9 @@ jQuery(document).ready( function( $ ){
 
 
 	function rtpr_process_next_plugin(){
-		if( rtpr_slugs_array.length > 0 ){
+		if ( rtpr_slugs_array.length > 0 ){
 			var slug = rtpr_slugs_array.shift();
-			if( $( '.plugin-report-row-temp-' + slug ).length ){
+			if ( $( '.plugin-report-row-temp-' + slug ).length ){
 				rtpr_get_plugin_info( slug );
 			} else {
 				rtpr_process_next_plugin();
@@ -17,8 +17,8 @@ jQuery(document).ready( function( $ ){
 		}
 		// update the progress information on the page
 		var perc = Math.ceil( ( rtpr_progress / rtpr_nrof_plugins ) * 100 );
-		if( perc < 100 ){
-			if( ! $( '#plugin-report-progress' ).find( 'progress' ).length ){
+		if ( perc < 100 ){
+			if ( ! $( '#plugin-report-progress' ).find( 'progress' ).length ){
 				$( '#plugin-report-progress' ).html( '<progress max="100" value="0"></progress>' );
 			}
 			$( '#plugin-report-progress progress' ).prop( 'value', perc );
@@ -31,7 +31,8 @@ jQuery(document).ready( function( $ ){
 			// Create the export button.
 			$('#plugin-report-buttons').append('<button class="button" href="#" id="plugin-report-export-btn">' + plugin_report_vars.export_btn + '</button>');
 			// Export button event handler.
-			$('#plugin-report-export-btn').click( function( e ){
+			$('#plugin-report-export-btn').on('click', function( e ){
+				e.preventDefault();
 				// Call the function that does the exporting.
 				rtpr_export_table();
 			});
@@ -46,14 +47,12 @@ jQuery(document).ready( function( $ ){
 			'nonce': plugin_report_vars.ajax_nonce
 		};
 
-		jQuery.post( ajaxurl, data, function(response) {
-			// parse the response
-			obj = jQuery.parseJSON(response);
+		jQuery.post( ajaxurl, data, function( obj ) {
 			// replace the temporary table row with the new data
 			$('#plugin-report-table .plugin-report-row-temp-' + slug ).replaceWith( obj.html );
 			// on to the next...
 			rtpr_process_next_plugin();
-		});
+		}, 'json' );
 	}
 
 	// kick things off
@@ -98,7 +97,10 @@ jQuery(document).ready( function( $ ){
 					var href = '';
 					$(this).find('a').each(function(){
 						// Get the href attribute, but strip any url vars to keep it short.
-						href = $(this).attr('href').split('#')[0].split('?')[0];
+						var linkHref = $(this).attr('href');
+						if ( linkHref ) {
+							href = linkHref.split('#')[0].split('?')[0];
+						}
 					});
 					// Add to the output.
 					csv_data += href + ';';

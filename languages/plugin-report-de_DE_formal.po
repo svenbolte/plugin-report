@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Plugin Report - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-03-02 14:49+0000\n"
+"PO-Revision-Date: 2026-04-23 16:04+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,79 +17,83 @@ msgstr ""
 "X-Loco-Version: 2.6.2; wp-6.0"
 
 #. %1$s: Plugin version number, %2$s: PHP version number.
-#: rt-plugin-report.php:521
+#: rt-plugin-report.php:538
 #, php-format
 msgid "(%1$s available, requires PHP %2$s)"
 msgstr "(%1$s verfügbar, benötigt PHP %2$s)"
 
 #. %1$s: Plugin version number, %2$s: WP version number, %3$s: PHP version number
-#: rt-plugin-report.php:515
+#: rt-plugin-report.php:532
 #, php-format
 msgid "(%1$s available, requires WP %2$s and PHP %3$s)"
 msgstr "(%1$s verfügbar, benötigt WP %2$s und PHP %3$s)"
 
 #. %1$s: Plugin version number, %2$s: WP version number.
-#: rt-plugin-report.php:518
+#: rt-plugin-report.php:535
 #, php-format
 msgid "(%1$s available, requires WP %2$s)"
 msgstr "(%1$s verfügbar, benötigt WP %2$s)"
 
 #. %s: Plugin version number.
-#: rt-plugin-report.php:524
+#: rt-plugin-report.php:541
 #, php-format
 msgid "(%s available)"
 msgstr "(%s verfügbar)"
 
-#: rt-plugin-report.php:166
+#: rt-plugin-report.php:184
 msgid "Activated"
 msgstr "Aktiviert"
 
-#: rt-plugin-report.php:498 rt-plugin-report.php:544 rt-plugin-report.php:548
+#: rt-plugin-report.php:151
+msgid "ago"
+msgstr "vor"
+
+#: rt-plugin-report.php:515 rt-plugin-report.php:561 rt-plugin-report.php:565
 msgid "ago "
 msgstr "vor "
 
-#: rt-plugin-report.php:143
+#: rt-plugin-report.php:161
 #, php-format
 msgid "An upgrade to %s is available"
 msgstr "Ein Upgrade auf %s ist verfügbar"
 
-#: rt-plugin-report.php:215
+#: rt-plugin-report.php:233
 msgid "Author URL"
 msgstr "Autoren Website"
 
-#: rt-plugin-report.php:168
+#: rt-plugin-report.php:186
 msgid "Auto-Updates"
 msgstr "Auto Updates"
 
-#: rt-plugin-report.php:153
+#: rt-plugin-report.php:171
 msgid "Clear cached plugin data and reload"
 msgstr "Im Cache gespeicherte Plugin-Daten löschen und neu laden"
 
-#: rt-plugin-report.php:155
+#: rt-plugin-report.php:173
 msgid "Currently installed plugins"
 msgstr "Aktuell installierte Plugins"
 
-#: rt-plugin-report.php:164
+#: rt-plugin-report.php:182
 msgid "Description | Author"
 msgstr "Beschreibung |  Autor"
 
-#: rt-plugin-report.php:130 rt-plugin-report.php:437
+#: rt-plugin-report.php:144 rt-plugin-report.php:454
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: rt-plugin-report.php:536
+#: rt-plugin-report.php:553
 msgid "Enabled"
 msgstr "aktiviert"
 
-#: rt-plugin-report.php:213
+#: rt-plugin-report.php:231
 msgid "Export .csv file"
 msgstr "Als csv exportieren"
 
-#: rt-plugin-report.php:462
+#: rt-plugin-report.php:479
 msgid "github.com<br>self-hosted"
 msgstr "github.com<br>selbst gehostet"
 
-#: rt-plugin-report.php:460
+#: rt-plugin-report.php:477
 msgid "github.com<br>self-hosted<br>wordpress.org<br>closed"
 msgstr "github.com<br>selbst gehostet<br>wordpress.org<br>geschlossen"
 
@@ -101,53 +105,53 @@ msgstr "https://github.com/svenbolte/rt-plugin-report"
 msgid "https://roytanck.com"
 msgstr "https://roytanck.com"
 
-#: rt-plugin-report.php:167
+#: rt-plugin-report.php:185
 #| msgid "Installed version"
 msgid "Installed ver"
 msgstr "Inst. Version"
 
-#: rt-plugin-report.php:169
+#: rt-plugin-report.php:187
 msgid "Last update"
 msgstr "letztes Update"
 
-#: rt-plugin-report.php:185
+#: rt-plugin-report.php:203
 msgid "Loading..."
 msgstr "Laden..."
 
-#: rt-plugin-report.php:170
+#: rt-plugin-report.php:188
 msgid "MinVersions"
 msgstr "Min.Versionen"
 
-#: rt-plugin-report.php:163
+#: rt-plugin-report.php:181
 msgid "Name"
 msgstr "Name"
 
-#: rt-plugin-report.php:488
+#: rt-plugin-report.php:505
 msgid "Network activated"
 msgstr "Netzwerkweit aktiviert"
 
-#: rt-plugin-report.php:495
+#: rt-plugin-report.php:512
 msgid "No"
 msgstr "Nein"
 
-#: rt-plugin-report.php:564 rt-plugin-report.php:583
+#: rt-plugin-report.php:581 rt-plugin-report.php:600
 msgid "No data available"
 msgstr "Keine Daten"
 
-#: rt-plugin-report.php:262 rt-plugin-report.php:425
+#: rt-plugin-report.php:280 rt-plugin-report.php:442
 msgid "No plugin data available."
 msgstr "Keine Plugin-Daten verfügbar."
 
-#: rt-plugin-report.php:538
+#: rt-plugin-report.php:555
 msgid "Not enabled"
 msgstr "deaktiviert"
 
-#: rt-plugin-report.php:74 rt-plugin-report.php:75 rt-plugin-report.php:108
+#: rt-plugin-report.php:77 rt-plugin-report.php:78 rt-plugin-report.php:111
 msgctxt "Page and menu title"
 msgid "Plugin Report"
 msgstr "Plugin-Report"
 
-#: rt-plugin-report.php:482
+#: rt-plugin-report.php:499
 msgid "Please clear cache to update"
 msgstr "Bitte leeren Sie den Cache zum Aktualisieren"
 
@@ -155,7 +159,7 @@ msgstr "Bitte leeren Sie den Cache zum Aktualisieren"
 msgid "Plugin Report"
 msgstr "Plugin-Report"
 
-#: rt-plugin-report.php:214
+#: rt-plugin-report.php:232
 msgid "Plugin URL"
 msgstr "Plugin-Seite"
 
@@ -167,15 +171,15 @@ msgstr ""
 "Bietet detaillierte Informationen zu aktuell installierten Plugins. Weitere "
 "Informationen über diese Abzweigung in der Readme.txt"
 
-#: rt-plugin-report.php:171
+#: rt-plugin-report.php:189
 msgid "Rating"
 msgstr "Bewertung"
 
-#: rt-plugin-report.php:165
+#: rt-plugin-report.php:183
 msgid "repository"
 msgstr "Quelle"
 
-#: rt-plugin-report.php:533
+#: rt-plugin-report.php:550
 msgid "Requires WordPress 5.5 or higher"
 msgstr "erst ab Wordpress 5.5"
 
@@ -183,14 +187,18 @@ msgstr "erst ab Wordpress 5.5"
 msgid "Roy Tanck Torsten Landsiedel und PBMod"
 msgstr "Roy Tanck Torsten Landsiedel und PBMod"
 
-#: rt-plugin-report.php:136
+#: rt-plugin-report.php:154
 msgid "theme tags"
 msgstr "Design Tags"
 
-#: rt-plugin-report.php:474
+#: rt-plugin-report.php:141
+msgid "Unknown"
+msgstr "unbekannt"
+
+#: rt-plugin-report.php:491
 msgid "Updates disabled"
 msgstr "Updates deaktiviert"
 
-#: rt-plugin-report.php:495
+#: rt-plugin-report.php:512
 msgid "Yes"
 msgstr "Ja"
